@@ -757,6 +757,7 @@ class ConnectionHandler:
         log_path = get_project_dir() + 'data/'+self.device_id+'-log.log'
         with open(log_path, 'a', encoding='utf-8') as f:
             f.write(log_content + '\n')
+
         if text is None or len(text) <= 0:
             self.logger.bind(tag=TAG).info(f"无需tts转换，query为空，{text}")
             return None, text, text_index
