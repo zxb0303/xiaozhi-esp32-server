@@ -21,7 +21,10 @@ async def handleTextMessage(conn, message):
             await conn.websocket.send(message)
             return
         if msg_json["type"] == "hello":
-            conn.device_id = msg_json["device_id"]
+            if "device_id" in msg_json:
+                conn.device_id = msg_json["device_id"]
+            else:
+                conn.device_id = conn.headers.get("device-id", "nobody")
             await handleHelloMessage(conn)
         elif msg_json["type"] == "abort":
             await handleAbortMessage(conn)
