@@ -40,7 +40,7 @@ async def handleAudioMessage(conn, audio):
             text, file_path = await conn.asr.speech_to_text(
                 conn.asr_audio, conn.session_id
             )
-            log_content = f'deviceId: {conn.device_id},datetime: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")},用户说: {text}'
+            log_content = f'[{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}]<{conn.device_id}>@用户: {text}'
             logger.bind(tag=TAG).info(log_content)
             log_path = get_project_dir() + 'data/'+conn.device_id+'-log.log'
             with open(log_path, 'a', encoding='utf-8') as f:

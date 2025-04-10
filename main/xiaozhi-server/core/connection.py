@@ -752,7 +752,7 @@ class ConnectionHandler:
                 )
 
     def speak_and_play(self, text, text_index=0):
-        log_content = f'deviceId: {self.device_id}, datetime: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}, 模型回复: {text}, text_index: {text_index}'
+        log_content = f'[{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}]<{self.device_id}>@模型({text_index}): {text}'
         self.logger.bind(tag=TAG).info(log_content)
         log_path = get_project_dir() + 'data/'+self.device_id+'-log.log'
         with open(log_path, 'a', encoding='utf-8') as f:
